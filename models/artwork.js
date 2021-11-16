@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       title: DataTypes.STRING,
       imageUrl: DataTypes.STRING,
       hearts: DataTypes.INTEGER,
-      minimunBid: DataTypes.INTEGER,
+      minimumBid: DataTypes.INTEGER,
     },
     {
       sequelize,

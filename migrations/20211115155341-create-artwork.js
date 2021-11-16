@@ -30,7 +30,7 @@ module.exports = {
         onUpdate: "CASCADE",
         onDelete: "SET NULL",
       },
-      minimumBid: {
+      minimuBid: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },

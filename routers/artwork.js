@@ -84,7 +84,7 @@ router.post("/auction", authMiddleware, async (req, res, next) => {
     const newAuction = await Artwork.create({
       userId: user.id,
       title: title,
-      minimunBid: minimumBid,
+      minimumBid: minimumBid,
       imageUrl: imageUrl,
       hearts: 0,
     });
