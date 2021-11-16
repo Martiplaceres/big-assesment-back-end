@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Artworks", {
+    await queryInterface.createTable("artworks", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -30,7 +30,7 @@ module.exports = {
         onUpdate: "CASCADE",
         onDelete: "SET NULL",
       },
-      minimunBid: {
+      minimumBid: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
@@ -46,6 +46,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Artworks");
+    await queryInterface.dropTable("artworks");
   },
 };
