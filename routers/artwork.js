@@ -45,10 +45,25 @@ router.patch("/:id/like", async (req, res, next) => {
   }
 });
 
-router.post("/:id/bid", async (req, res, next) => {
+router.post("/:id/bid", authMiddleware, async (req, res, next) => {
   try {
     const { id } = req.params;
     const { amount, email } = req.body;
+
+    const artwork = await Artwork.findByPk(id, {
+      include: {
+        model: Bid,
+        order: [["amount", "DESC"]],
+      },
+    });
+    const highestScore = Math.max(...artwork.bids.map((bid) => bid.amount));
+
+    const minimumBid = highestScore > 0 ? highestScore : artwork.minimumBid;
+
+    if (amount <= minimumBid) {
+      return res.status(400).send(`Amount should be more than ${highestScore}`);
+    }
+
     if (!amount) {
       return res.status(400).send(`Please specify an amount`);
     }
